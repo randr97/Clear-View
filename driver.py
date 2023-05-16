@@ -64,6 +64,7 @@ if __name__ == "__main__":
     parser.add_argument('--snapshots_folder', type=str, default="snapshots/")
     parser.add_argument('--sample_output_folder', type=str, default="samples/")
     parser.add_argument('--model', type=str, default="clearview")
+    parser.add_argument('--run_id', type=str, default="clearview")
 
     config = parser.parse_args()
 
