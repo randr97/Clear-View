@@ -65,6 +65,7 @@ if __name__ == "__main__":
     parser.add_argument('--sample_output_folder', type=str, default="samples/")
     parser.add_argument('--model', type=str, default="clearview")
     parser.add_argument('--run_id', type=str, default="clearview")
+    parser.add_argument('--logs', type=str, default="logs/")
 
     config = parser.parse_args()
 
@@ -72,6 +73,8 @@ if __name__ == "__main__":
         os.mkdir(config.snapshots_folder)
     if not os.path.exists(config.sample_output_folder):
         os.mkdir(config.sample_output_folder)
+    if not os.path.exists(config.logs):
+        os.mkdir(config.logs)
 
     driver = Driver(config)
     driver.run()
