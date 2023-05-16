@@ -112,7 +112,7 @@ class Train:
             )
 
     def save_epoch_data(self):
-        torch.save(self.net.state_dict(), self.config.snapshots_folder + self.config.run_id)
+        torch.save(self.net.state_dict(), self.config.snapshots_folder + self.config.run_id + ".pth")
         with open(self.config.logs + self.config.run_id + ".json", 'w') as f:
             json.dump({
                 'ssim_values': self.ssim_values,
