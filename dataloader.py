@@ -43,7 +43,8 @@ class DehazingLoader(data.Dataset):
         haze_list = glob.glob(hazy_img + "*.jpg")
         filestruct = defaultdict(list)
         for i in haze_list:
-            img = i.split("/")[-1]
+
+            img = i.replace("\\", "/").split("/")[-1]
             k = img.split('_')
             filestruct[f"{k[0]}_{k[1]}.jpg"].append(img)
 
