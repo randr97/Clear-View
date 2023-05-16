@@ -2,8 +2,6 @@ import glob
 import os
 import sys
 from collections import defaultdict
-
-import cv2
 import numpy as np
 import torch
 import torch.utils.data as data

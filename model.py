@@ -14,7 +14,6 @@ class CReLU(nn.Module):
 
 
 class ClearView(nn.Module):
-
     def __init__(self):
         super(ClearView, self).__init__()
 
@@ -80,25 +79,13 @@ class LightDehazeNet(nn.Module):
         conv_layer1 = self.relu(self.e_conv_layer1(img))
         conv_layer2 = self.relu(self.e_conv_layer2(conv_layer1))
         conv_layer3 = self.relu(self.e_conv_layer3(conv_layer2))
-
-        # concatenating conv1 and conv3
         concat_layer1 = torch.cat((conv_layer1, conv_layer3), 1)
-
         conv_layer4 = self.relu(self.e_conv_layer4(concat_layer1))
         conv_layer5 = self.relu(self.e_conv_layer5(conv_layer4))
         conv_layer6 = self.relu(self.e_conv_layer6(conv_layer5))
-
-        # concatenating conv4 and conv6
         concat_layer2 = torch.cat((conv_layer4, conv_layer6), 1)
-
         conv_layer7 = self.relu(self.e_conv_layer7(concat_layer2))
-
-        # concatenating conv2, conv5, and conv7
         concat_layer3 = torch.cat((conv_layer2, conv_layer5, conv_layer7), 1)
-
         conv_layer8 = self.relu(self.e_conv_layer8(concat_layer3))
-
         dehaze_image = self.relu((conv_layer8 * img) - conv_layer8 + 1)
-        # J(x) = clean_image, k(x) = x8, I(x) = x, b = 1
-
         return dehaze_image

@@ -33,12 +33,8 @@ def dehaze_image(image_path):
     torchvision.utils.save_image(
         torch.cat((data_hazy, clean_image), 0), "results/" + image_path.split("/")[-1])
 
-
 if __name__ == '__main__':
-
     test_list = glob.glob("test_images/*")
-
     for image in test_list:
-
         dehaze_image(image)
         print(image, "done!")

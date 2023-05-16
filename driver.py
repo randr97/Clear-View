@@ -42,13 +42,13 @@ class Driver:
             num_workers=config.num_workers,
             pin_memory=True
         )
-        Train(net, trainset, valset, config)
+        Train(net, trainset, valset, config).train()
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-
+    torch.backends.cudnn.benchmark = True
     # Input Parameters
     parser.add_argument('--og_img', type=str, default="data/original/")
     parser.add_argument('--hazy_img', type=str, default="data/haze/")
@@ -71,3 +71,6 @@ if __name__ == "__main__":
         os.mkdir(config.snapshots_folder)
     if not os.path.exists(config.sample_output_folder):
         os.mkdir(config.sample_output_folder)
+
+    driver = Driver(config)
+    driver.run()
