@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import time
+
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
@@ -46,7 +47,7 @@ class Train:
 
     def train(self):
         print("Initiating Training...")
-        print("Device: ",device)
+        print("Device: ", device)
         print(f"Trainable Parameters: {sum(p.numel() for p in self.net.parameters() if p.requires_grad)}")
         for epoch in range(self.config.num_epochs):
             train_loss = 0.00
@@ -65,7 +66,7 @@ class Train:
                 self.iteration_losses.append(loss.item())
                 train_loss += loss.item()
 
-                ## Checkpoint is every 50 iterations.
+                # Checkpoint is every 50 iterations.
                 if ((iteration + 1) % 50) == 0:
                     print("Train Loss at iteration", iteration + 1, ":", loss.item())
             train_end = time.monotonic()
@@ -80,25 +81,25 @@ class Train:
                     self.validation_losses.append(val_loss.item())
                     valid_loss += val_loss
 
-                    ## Checkpoint is every 10 steps.
+                    # Checkpoint is every 10 steps.
                     if ((iter_val + 1) % 10) == 0:
                         print("Validation Loss at iteration", iter_val + 1, ":", val_loss.item())
 
-            #Sample image to calculate PSNR and SSIM scores.
+            # Sample image to calculate PSNR and SSIM scores.
             img_orig, img_haze = next(iter(self.valset))
             img_orig = img_orig.to(device=device)
             img_haze = img_haze.to(device=device)
             clean_image = self.net(img_haze)
 
-            #Interpolation for torchmetrics classes.
+            # Interpolation for torchmetrics classes.
             cpu_clean = clean_image[0].cpu().unsqueeze(0)
             cpu_original = img_orig[0].cpu().unsqueeze(0)
 
-            #PSNR and SSIM
+            # PSNR and SSIM
             psnr_epoch = self.psnr(np.squeeze(cpu_clean), np.squeeze(cpu_original))
             ssim_epoch = self.ssim(clean_image, img_orig)
 
-            #Logging.
+            # Logging.
             self.ssim_values.append(ssim_epoch.item())
             self.psnr_values.append(psnr_epoch.item())
             self.training_times.append(train_end - train_start)

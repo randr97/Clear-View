@@ -2,6 +2,7 @@ import glob
 import os
 import sys
 from collections import defaultdict
+
 import numpy as np
 import torch
 import torch.utils.data as data
@@ -51,8 +52,7 @@ class DehazingLoader(data.Dataset):
             for each in v:
                 if ct < len(filestruct.keys()) * train_test_split:
                     train_list.append([og_img + k, hazy_img + each])
-                    ct += 1
                 else:
                     val_list.append([og_img + k, hazy_img + each])
-                    ct += 1
+            ct += 1
         return train_list, val_list
