@@ -8,6 +8,11 @@ Our approach employs depth-wise separable convolutional layers and self-regulari
 bound systems already confined by heavy segmentation models when dealing with obscured environments. Our benchmark results based on SSIM and PSNR scores demonstrate that our modified architecture achieves performance on par with the DehazeNet model while having a smaller overall memory footprint. This makes our approach a promising solution for memory-bound autonomous systems that use computer vision in obscured environments, as it offers efficient and effective dehazing capabilities with reduced computational requirements.
 
 # Instruction
+
+**Dataset** - https://drive.google.com/file/d/1OpokedZ9o-RP7n8Vb3CBjX2yZm-E2Qb2/view?usp=share_link
+
+Download the dataset and extract in the project’s directory, before running the experiment. This will create a data folder.
+
 1. `driver.py` is the start point of execution
 2. It takes in multiple args
 ```
@@ -26,10 +31,10 @@ python3 driver.py \
     --run_id=clearview \
     --logs=logs/
 ```
-3. Inorder to run clearview model use option `--model=clearview` else `--model=dehaze` for DehazeNet
-4. Use `plot.ipynb` to visualize various results
+3. Inorder to run "clearview" model use option `--model=clearview` else `--model=dehaze` for DehazeNet
+4. Use `examples.ipynb` to visualize various results
 
->Note: The training process outputs `Run logs in logs folder` and `model.pth in snapshots` folder
+>Note: The training process outputs `Run logs in logs folder` and the model- `clearview.pth` in snapshots folder.
 
 # Analysis
 
@@ -42,9 +47,9 @@ Due to reduced complexity of our implementation (using depth-wise convolutional 
 
 Additionally, our PSNR and SSIM scores are on par with the Dehazenet scores.
 
-| ![Alt text](plots/avg_psnr.png) | ![Alt text](plots/avg_psnr.png) | 
+| ![Alt text](plots/avg_psnr.png) | ![Alt text](plots/avg_ssim.png) | 
 |:--:|:--:|
-| Average Training Time Comparision | Average Training Time Comparision |
+| PSNR Comparision| SSIM Comparision |
 
 # Sample images from real-world instances.
 
