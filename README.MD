@@ -1,6 +1,6 @@
 # ClearView - Tackling Dehazing Challenges
 
-### Authors : Rohit Shroth, Savinay Shukla (ss16924)
+### Authors : Rohit Shrothrium (rs8031), Savinay Shukla (ss16924)
 
 Lightweight De-Hazification model with 1800 trainable params and 8MiB in size.
 
@@ -10,8 +10,24 @@ bound systems already confined by heavy segmentation models when dealing with ob
 # Instruction
 
 **Dataset** - https://drive.google.com/file/d/1OpokedZ9o-RP7n8Vb3CBjX2yZm-E2Qb2/view?usp=share_link
+> Credit - Ancuti, Cosmin, Codruta O. Ancuti, and Christophe De Vleeschouwer. ”D-hazy: A dataset to evaluate quantitatively dehazing algorithms.” 2016 IEEE international conference on image processing (ICIP). IEEE, 2016
 
 Download the dataset and extract in the project’s directory, before running the experiment. This will create a data folder.
+
+>Note: The folder structure is as follows
+```
+CLEAR_VIEW (Project root dir)
+    |
+    |
+    ---- data
+    |        |
+    |        |---haze (Hazy images set)
+    |        |
+    |        |
+    |        |---original (Original images set)
+    |
+    |----(rest of your project files)
+```
 
 1. `driver.py` is the start point of execution
 2. It takes in multiple args
