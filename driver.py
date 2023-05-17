@@ -60,7 +60,7 @@ if __name__ == "__main__":
     parser.add_argument('--val_batch', type=int, default=8)
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--snapshots_folder', type=str, default="snapshots/")
-    parser.add_argument('--model', type=str, default="clearview",)
+    parser.add_argument('--model', type=str, default="clearview")
     parser.add_argument('--run_id', type=str, default="clearview")
     parser.add_argument('--logs', type=str, default="logs/")
 
